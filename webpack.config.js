@@ -3,20 +3,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
-  entry: {
-    app: path.join(__dirname, 'src', 'index.pug'),
-  },
+  entry: path.join(__dirname, 'src', 'index.pug'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    path: path.resolve(__dirname, 'www'),
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
       { test: /\.txt$/, use: 'raw-loader' },
-      { 
-        test: /\.pug$/,
-        use: ['pug-loader']
-      },
+      { test: /\.pug$/, use: ['pug-loader'] },
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
@@ -41,19 +37,24 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.pug'     // path.resolve(__dirname, './src', 'index.html'),
-      // filename: 'index.html',
+      // entry
+      template: path.resolve(__dirname, './src', 'index.pug'),
+      // output
+      filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css'
     })
   ],
   devServer: {
-    contentBase: __dirname + 'src',
-    // filename: 'index.pug',
-    // hot: true,
+    contentBase: path.join(__dirname, 'src'),
+    port: 9000,
+    filename: 'index.pug',
+    compress: true,
+    hot: true,
     inline: true,
-    // historyApiFallback: true
+    historyApiFallback: true,
+    open: true
   }
 }
 

@@ -1,0 +1,11 @@
+stella expert bold
+LEXUSCAPSOPTI
+
+
+Neue Frutiger Book
+Neutro Regular
+Neue Frutiger Cyrillic Bo
+
+width circle = 463px and 147px
+
+006cb4 -color
